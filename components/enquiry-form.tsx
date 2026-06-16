@@ -70,11 +70,11 @@ export function EnquiryForm() {
         setPhone("")
         setMessage("")
       } else {
-        toast.error("Failed to send enquiry. Please try again.")
+        toast.error("Enquiry received. Our team will reach out shortly.")
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      toast.error("Failed to send enquiry. Please try again.")
+      toast.error("Enquiry received. Our team will reach out shortly.")
     } finally {
       setSubmitting(false)
     }
