@@ -16,6 +16,10 @@ import { enquiryOptions } from "@/lib/products"
 
 const GOOGLE_APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL
 
+if (typeof window !== "undefined") {
+  console.log("[v0] Environment Check - GOOGLE_APPS_SCRIPT_URL:", GOOGLE_APPS_SCRIPT_URL ? "✓ Loaded" : "✗ Missing")
+}
+
 export function EnquiryForm() {
   const [code, setCode] = useState("")
   const [name, setName] = useState("")
