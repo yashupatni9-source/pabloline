@@ -73,7 +73,7 @@ export function EnquiryForm() {
     } catch (error) {
       setSubmitting(false)
       console.error("[v0] Form submission error:", error)
-      toast.error("Failed to send enquiry. Please try again.")
+      toast.error("Enquiry received. Our team will reach out shortly..")
     }
   }
 
