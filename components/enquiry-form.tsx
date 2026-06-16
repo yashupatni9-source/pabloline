@@ -51,19 +51,27 @@ export function EnquiryForm() {
     try {
       const materialName =
         enquiryOptions.find((m) => m.code === code)?.name || code
+      
+      const payload = {
+        name,
+        email: "enquiry@lithosco.com",
+        phone,
+        material: `${code} - ${materialName}`,
+        message: message || "No additional message",
+      }
+      
+      console.log("[v0] Form submission starting. URL:", GOOGLE_APPS_SCRIPT_URL)
+      console.log("[v0] Payload being sent:", payload)
+      
       const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email: "enquiry@lithosco.com",
-          phone,
-          material: `${code} - ${materialName}`,
-          message: message || "No additional message",
-        }),
+        body: JSON.stringify(payload),
       })
 
+      console.log("[v0] Fetch response received. Status:", response.status)
+      
       setSubmitting(false)
       toast.success("Enquiry received. Our team will reach out shortly.")
       setCode("")
@@ -73,6 +81,7 @@ export function EnquiryForm() {
     } catch (error) {
       setSubmitting(false)
       console.error("[v0] Form submission error:", error)
+      console.error("[v0] Error details:", error instanceof Error ? error.message : String(error))
       toast.error("Failed to send enquiry. Please try again.")
     }
   }
